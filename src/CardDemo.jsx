@@ -1,63 +1,86 @@
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/button";
 import {
   Card,
-  CardAction,
   CardContent,
   CardDescription,
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
+} from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 
 export function CardDemo() {
   return (
-    <Card className="w-full max-w-sm">
-      <CardHeader>
-        <CardTitle>Login to your account</CardTitle>
-        <CardDescription>
+    <Card className="bg-zinc-900 border-zinc-800 shadow-xl text-white">
+      <CardHeader className="text-center">
+        <CardTitle className="text-2xl font-semibold mb-1">
+          Login to your account
+        </CardTitle>
+        <CardDescription className="text-gray-400 text-sm">
           Enter your email below to login to your account
         </CardDescription>
-        <CardAction>
-          <Button variant="link">Sign Up</Button>
-        </CardAction>
       </CardHeader>
+
       <CardContent>
-        <form>
-          <div className="flex flex-col gap-6">
-            <div className="grid gap-2">
-              <Label htmlFor="email">Email</Label>
-              <Input
-                id="email"
-                type="email"
-                placeholder="m@example.com"
-                required
-              />
+        <form className="space-y-5">
+          <div className="space-y-2">
+            <Label htmlFor="email" className="text-gray-300">
+              Email
+            </Label>
+            <Input
+              id="email"
+              type="email"
+              placeholder="m@example.com"
+              required
+              className="bg-zinc-800 border-zinc-700 focus:border-pink-600 focus-visible:ring-0 text-white placeholder-gray-500"
+            />
+          </div>
+
+          <div className="space-y-2">
+            <div className="flex items-center justify-between">
+              <Label htmlFor="password" className="text-gray-300">
+                Password
+              </Label>
+              <a
+                href="#"
+                className="text-sm text-pink-500 hover:underline underline-offset-4"
+              >
+                Forgot password?
+              </a>
             </div>
-            <div className="grid gap-2">
-              <div className="flex items-center">
-                <Label htmlFor="password">Password</Label>
-                <a
-                  href="#"
-                  className="ml-auto inline-block text-sm underline-offset-4 hover:underline"
-                >
-                  Forgot your password?
-                </a>
-              </div>
-              <Input id="password" type="password" required />
-            </div>
+            <Input
+              id="password"
+              type="password"
+              required
+              className="bg-zinc-800 border-zinc-700 focus:border-pink-600 focus-visible:ring-0 text-white"
+            />
           </div>
         </form>
       </CardContent>
-      <CardFooter className="flex-col gap-2">
-        <Button type="submit" className="w-full">
+
+      <CardFooter className="flex flex-col gap-3">
+        <Button
+          type="submit"
+          className="w-full bg-gradient-to-r from-rose-600 to-pink-600 hover:opacity-90 transition-all"
+        >
           Login
         </Button>
-        <Button variant="outline" className="w-full">
+
+        <Button
+          variant="outline"
+          className="w-full border-zinc-700 text-gray-300 hover:bg-zinc-800"
+        >
           Login with Google
         </Button>
+
+        <p className="text-sm text-gray-400 text-center mt-2">
+          Don't have an account?{" "}
+          <a href="#" className="text-pink-500 hover:underline">
+            Sign Up
+          </a>
+        </p>
       </CardFooter>
     </Card>
-  )
+  );
 }
