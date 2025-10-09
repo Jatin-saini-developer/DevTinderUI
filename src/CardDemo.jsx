@@ -9,8 +9,36 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { useState } from "react";
+import axios from "axios"; 
+import { useDispatch } from "react-redux";
+
+
 
 export function CardDemo() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const dispatch = useDispatch();
+
+
+
+  console.log(email);
+
+  const handleLogin = async () => {
+    try {
+      const response = await axios.post(
+        "http://localhost:7777/login",
+        { email, password },
+        { withCredentials: true }
+      );
+      dispatch(addUser(res.data));
+
+    } catch (error) {
+      console.error("Login failed:")
+    }
+
+  };
+
   return (
     <Card className="bg-zinc-900 border-zinc-800 shadow-xl text-white">
       <CardHeader className="text-center">
@@ -32,6 +60,8 @@ export function CardDemo() {
               id="email"
               type="email"
               placeholder="m@example.com"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               required
               className="bg-zinc-800 border-zinc-700 focus:border-pink-600 focus-visible:ring-0 text-white placeholder-gray-500"
             />
@@ -52,6 +82,8 @@ export function CardDemo() {
             <Input
               id="password"
               type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
               required
               className="bg-zinc-800 border-zinc-700 focus:border-pink-600 focus-visible:ring-0 text-white"
             />
@@ -63,6 +95,7 @@ export function CardDemo() {
         <Button
           type="submit"
           className="w-full bg-gradient-to-r from-rose-600 to-pink-600 hover:opacity-90 transition-all"
+          onClick={handleLogin}
         >
           Login
         </Button>
@@ -76,7 +109,7 @@ export function CardDemo() {
 
         <p className="text-sm text-gray-400 text-center mt-2">
           Don't have an account?{" "}
-          <a href="#" className="text-pink-500 hover:underline">
+          <a href="signUp" className="text-pink-500 hover:underline">
             Sign Up
           </a>
         </p>

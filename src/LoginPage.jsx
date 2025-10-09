@@ -1,7 +1,7 @@
 import React from "react";
 import { CardDemo } from "./CardDemo";
 
-const LoginPage = () => {
+const LoginPage = () => { 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-black text-white px-4">
       {/* Logo */}

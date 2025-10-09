@@ -1,21 +1,32 @@
-
 import './App.css'
-import { Button } from "@/components/ui/button"
-import { CardDemo } from './CardDemo'
 import LoginPage from './LoginPage'
 import SignUpPage from './SignUpPage'
+import { createBrowserRouter, RouterProvider,  } from "react-router";
+import appStore from './utils/AppStore'
 
 
 function App() {
 
 
+    const router = createBrowserRouter([
+    {
+      path: "/",
+      element: <LoginPage />,
+    },
+
+    {
+      path: "/signUp",
+      element: <SignUpPage/>,
+    },
+  ]);
+
+
   return (  
-    <div >
-      {/* <SignUpPage/> */}
-      <LoginPage/>
-
-
-    </div>  
+ 
+    <Provider store={appStore}>
+    <RouterProvider  router={router} >
+    </RouterProvider >
+    </Provider>
 
   )
 }
