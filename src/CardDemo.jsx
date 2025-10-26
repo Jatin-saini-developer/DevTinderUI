@@ -10,17 +10,17 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useState } from "react";
-import axios from "axios"; 
+import axios from "axios";
 import { useDispatch } from "react-redux";
-
+import { addUser } from "./utils/UserSlice";
+import { useNavigate } from "react-router-dom";
 
 
 export function CardDemo() {
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [password, setPassword] = useState("Jatin@123");
   const dispatch = useDispatch();
-
-
+  const navigate = useNavigate();
 
   console.log(email);
 
@@ -31,12 +31,14 @@ export function CardDemo() {
         { email, password },
         { withCredentials: true }
       );
-      dispatch(addUser(res.data));
-
+      dispatch(addUser(response.data));
+      navigate("/browse")
     } catch (error) {
-      console.error("Login failed:")
+      console.error(
+        "Login failed:",
+        error.response ? error.response.data : error.message
+      );
     }
-
   };
 
   return (

@@ -3,6 +3,8 @@ import LoginPage from './LoginPage'
 import SignUpPage from './SignUpPage'
 import { createBrowserRouter, RouterProvider,  } from "react-router";
 import appStore from './utils/AppStore'
+import BrowsePage from './files/BrowsePage';
+import { Provider } from "react-redux";
 
 
 function App() {
@@ -18,6 +20,11 @@ function App() {
       path: "/signUp",
       element: <SignUpPage/>,
     },
+
+    {
+      path: "/browse",
+      element: <BrowsePage/>
+    }
   ]);
 
 
