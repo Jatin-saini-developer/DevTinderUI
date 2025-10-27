@@ -39,20 +39,20 @@ const Navbar = () => {
 
         {/* Navigation Links */}
         <div className="flex items-center space-x-8">
-          <a
-            href="#"
+          <Link
+            to="/browse"
             className="flex items-center text-pink-400 hover:text-pink-300 transition-colors"
           >
             <HeartIcon className="h-5 w-5 mr-1" />
             Browse
-          </a>
-          <a
-            href="#"
+          </Link>
+          <Link
+           to="/matches"
             className="flex items-center text-gray-300 hover:text-pink-400 transition-colors"
           >
             <ChatBubbleBottomCenterTextIcon className="h-5 w-5 mr-1" />
             Matches
-          </a>
+          </Link>
           <Link
             to="/profile"
             className="flex items-center text-gray-300 hover:text-pink-400 transition-colors"

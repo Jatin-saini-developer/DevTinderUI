@@ -1,6 +1,7 @@
 import React from "react";
 import Navbar from "./Navbar";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const ProfilePage = () => {
   return (
@@ -10,11 +11,11 @@ const ProfilePage = () => {
       <div className="my-4">
         <div className="flex justify-between items-center w-[80%] mx-auto ">
           <h1 className="text-4xl font-bold">Profile</h1>
-          <button className="bg-pink-600 p-3 rounded-md">Edit Profile</button>
+          <Link to='/editProfile' className="bg-pink-600 p-3 rounded-md">Edit Profile</Link >
         </div>
         <div className="w-[80%] mx-auto my-3">
-          <div className="bg-pink-600 py-15 rounded-t-2xl">
-            <h1>helllo</h1>
+          <div className="bg-pink-600 py-15 rounded-t-2xl flex justify-center">
+            <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=John" alt="Profile Pic" className="w-24 h-24" />
           </div>
 
 

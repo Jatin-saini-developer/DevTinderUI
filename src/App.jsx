@@ -6,6 +6,8 @@ import appStore from './utils/AppStore'
 import BrowsePage from './files/BrowsePage';
 import { Provider } from "react-redux";
 import ProfilePage from './files/ProfilePage';
+import EditProfile from './files/EditProfile';
+import MatchesPage from './files/MatchesPage';
 
 
 function App() {
@@ -29,6 +31,14 @@ function App() {
     {
       path : "/profile",
       element: <ProfilePage/>
+    },
+    {
+      path : "matches",
+      element : <MatchesPage/>
+    },
+    {
+      path : "/editProfile",
+      element : <EditProfile/>
     }
   ]);
 
