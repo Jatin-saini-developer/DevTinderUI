@@ -5,6 +5,7 @@ import { createBrowserRouter, RouterProvider,  } from "react-router";
 import appStore from './utils/AppStore'
 import BrowsePage from './files/BrowsePage';
 import { Provider } from "react-redux";
+import ProfilePage from './files/ProfilePage';
 
 
 function App() {
@@ -24,6 +25,10 @@ function App() {
     {
       path: "/browse",
       element: <BrowsePage/>
+    },
+    {
+      path : "/profile",
+      element: <ProfilePage/>
     }
   ]);
 
