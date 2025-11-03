@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Navbar from "./Navbar";
 import MatchesCard from "./MatchesCard";
 
@@ -9,6 +9,11 @@ const MatchesPage = () => {
       console.log(res);
     } catch (error) {}
   };
+
+  useEffect(()=>{
+    connectionRequest()
+  },[]);
+  
   return (
     <div>
       <Navbar />
