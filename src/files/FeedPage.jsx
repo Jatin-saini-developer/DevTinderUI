@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { HeartIcon, XMarkIcon } from "@heroicons/react/24/solid";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import axios from "axios";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addFeed } from "../utils/FeedSlice";
 
 const FeedPage = () => {
@@ -10,38 +10,44 @@ const FeedPage = () => {
 
   const getFeed = async () => {
     try {
-      const res = await axios.get("http://localhost:7777/feed");
+      const res = await axios.get("http://localhost:7777/feed", { withCredentials: true });
       dispatch(addFeed(res.data.data));
     } catch (error) {}
   };
+
+  const feeds = useSelector((state) => state.feed )
 
   useEffect(() => {
     getFeed();
   }, []);
 
   return (
-    <div>
-      <div className="bg-[#111] text-white rounded-2xl overflow-hidden shadow-lg w-80 mx-auto">
+<div className="flex flex-wrap justify-center gap-6 p-6 bg-black min-h-screen">
+  {feeds && feeds.length > 0 ? (
+    feeds.map((user) => (
+      <div
+        key={user._id}
+        className="bg-[#111] text-white rounded-2xl overflow-hidden shadow-lg w-80"
+      >
         {/* Image */}
         <div className="bg-pink-500 flex justify-center items-center h-48">
           <img
-            src="https://api.dicebear.com/7.x/avataaars/svg?seed=Sarah"
-            alt="Sarah Chen"
+            src={`https://api.dicebear.com/7.x/avataaars/svg?seed=${user.firstName}`}
+            alt={user.firstName}
             className="h-32 w-32 rounded-full border-4 border-[#111] -mb-12"
           />
         </div>
 
         {/* Content */}
         <div className="p-6 pt-16">
-          <h2 className="text-xl font-semibold">Sarah Chen</h2>
+          <h2 className="text-xl font-semibold">{user.firstName} {user.lastName}</h2>
           <p className="text-gray-400 text-sm mt-2 leading-relaxed">
-            Frontend enthusiast who loves building beautiful UIs with React and
-            Tailwind. Always exploring new design patterns.
+            {user.about || "No description provided"}
           </p>
 
-          {/* Skills */}
+          {/* Skills (optional placeholder if your API doesn’t have skills yet) */}
           <div className="flex flex-wrap gap-2 mt-4">
-            {["React", "TypeScript", "Tailwind CSS", "Figma"].map((skill) => (
+            {["React", "TypeScript", "Tailwind CSS"].map((skill) => (
               <span
                 key={skill}
                 className="bg-[#1e1e1e] text-gray-300 px-3 py-1 text-xs rounded-full"
@@ -49,12 +55,6 @@ const FeedPage = () => {
                 {skill}
               </span>
             ))}
-          </div>
-
-          {/* Social Icons */}
-          <div className="flex items-center gap-4 mt-4 text-gray-400 text-lg">
-            <FaGithub className="cursor-pointer hover:text-white transition" />
-            <FaLinkedin className="cursor-pointer hover:text-white transition" />
           </div>
 
           {/* Buttons */}
@@ -70,7 +70,12 @@ const FeedPage = () => {
           </div>
         </div>
       </div>
-    </div>
+    ))
+  ) : (
+    <p className="text-gray-400">Loading feed...</p>
+  )}
+</div>
+
   );
 };
 
