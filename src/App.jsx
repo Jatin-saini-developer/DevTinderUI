@@ -8,6 +8,7 @@ import { Provider } from "react-redux";
 import ProfilePage from './files/ProfilePage';
 import EditProfile from './files/EditProfile';
 import MatchesPage from './files/MatchesPage';
+import Connections from './files/Connections';
 
 
 function App() {
@@ -39,6 +40,10 @@ function App() {
     {
       path : "/editProfile",
       element : <EditProfile/>
+    },
+    {
+      path : "/connections",
+      element : <Connections/>
     }
   ]);
 

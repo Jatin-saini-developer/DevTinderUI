@@ -46,6 +46,7 @@ const Navbar = () => {
             <HeartIcon className="h-5 w-5 mr-1" />
             Browse
           </Link>
+
           <Link
            to="/matches"
             className="flex items-center text-gray-300 hover:text-pink-400 transition-colors"
@@ -53,6 +54,15 @@ const Navbar = () => {
             <ChatBubbleBottomCenterTextIcon className="h-5 w-5 mr-1" />
             Matches
           </Link>
+
+          <Link
+           to="/connections"
+            className="flex items-center text-gray-300 hover:text-pink-400 transition-colors"
+          >
+            <ChatBubbleBottomCenterTextIcon className="h-5 w-5 mr-1" />
+            Connections
+          </Link>
+          
           <Link
             to="/profile"
             className="flex items-center text-gray-300 hover:text-pink-400 transition-colors"

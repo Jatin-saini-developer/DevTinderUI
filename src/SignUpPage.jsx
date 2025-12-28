@@ -1,6 +1,30 @@
-import React from "react";
+import React, { useState } from "react";
+import axios from "axios";
+
+const handleSignUp = async () => {
+  try {
+    const res = await axios.post("http://localhost:7777/signUp", {
+      firstName,
+      lastName,
+      email,
+      password,
+    });
+
+    alert(res.data);
+  } catch (err) {
+    alert(err.response?.data || "Signup failed");
+  }
+  console.log("handleSignUp Working Fine.....");
+  
+};
+
 
 const SignUpPage = () => {
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-black text-white px-6">
       {/* Logo and Title */}
@@ -26,13 +50,25 @@ const SignUpPage = () => {
         <div className="flex flex-col gap-3 mb-4">
           <input
             type="text"
-            placeholder="Full Name"
+            placeholder="First Name"
             className="bg-zinc-800 px-4 py-3 rounded-lg border border-zinc-700 focus:border-pink-600 focus:outline-none"
+            value={firstName}
+            onChange={(e) => setFirstName(e.target.value)}
+          />
+
+          <input
+            type="text"
+            placeholder="Last Name"
+            className="bg-zinc-800 px-4 py-3 rounded-lg border border-zinc-700 focus:border-pink-600 focus:outline-none"
+            value={lastName}
+            onChange={(e) => setLastName(e.target.value)}
           />
           <input
             type="email"
             placeholder="E-mail"
             className="bg-zinc-800 px-4 py-3 rounded-lg border border-zinc-700 focus:border-pink-600 focus:outline-none"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
           />
         </div>
 
@@ -42,6 +78,8 @@ const SignUpPage = () => {
             type="password"
             placeholder="Password"
             className="w-full bg-zinc-800 px-4 py-3 rounded-lg border border-zinc-700 focus:border-pink-600 focus:outline-none"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
           />
         </div>
 
@@ -78,7 +116,10 @@ const SignUpPage = () => {
         </div>
 
         {/* Submit Button */}
-        <button className="w-full bg-gradient-to-r from-rose-600 to-pink-600 hover:opacity-90 transition-all py-3 rounded-xl font-semibold text-lg">
+        <button
+         className="w-full bg-gradient-to-r from-rose-600 to-pink-600 hover:opacity-90 transition-all py-3 rounded-xl font-semibold text-lg"
+         onClick={handleSignUp}>
+         
           Sign Up
         </button>
       </div>
