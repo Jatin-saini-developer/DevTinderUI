@@ -1,29 +1,42 @@
 import React, { useState } from "react";
 import axios from "axios";
-
-const handleSignUp = async () => {
-  try {
-    const res = await axios.post("http://localhost:7777/signUp", {
-      firstName,
-      lastName,
-      email,
-      password,
-    });
-
-    alert(res.data);
-  } catch (err) {
-    alert(err.response?.data || "Signup failed");
-  }
-  console.log("handleSignUp Working Fine.....");
-  
-};
-
+import { useNavigate } from "react-router-dom";
 
 const SignUpPage = () => {
+
+
+    const navigate = useNavigate();
+
+
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const handleSignUp = async () => {
+    try {
+      const res = await axios.post("http://localhost:7777/signUp", {
+        firstName,
+        lastName,
+        email,
+        password,
+      },{
+    withCredentials: true, 
+  });
+
+      setFirstName("");
+      setLastName("");
+      setEmail("");
+      setPassword("");
+
+      navigate("/browse")
+
+      alert(res.data);
+    } catch (err) {
+      alert(err.response?.data || "Signup failed");
+    }
+    console.log("handleSignUp Working Fine.....");
+  };
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-black text-white px-6">
@@ -117,9 +130,9 @@ const SignUpPage = () => {
 
         {/* Submit Button */}
         <button
-         className="w-full bg-gradient-to-r from-rose-600 to-pink-600 hover:opacity-90 transition-all py-3 rounded-xl font-semibold text-lg"
-         onClick={handleSignUp}>
-         
+          className="w-full bg-gradient-to-r from-rose-600 to-pink-600 hover:opacity-90 transition-all py-3 rounded-xl font-semibold text-lg"
+          onClick={handleSignUp}
+        >
           Sign Up
         </button>
       </div>
